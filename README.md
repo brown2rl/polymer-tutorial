@@ -1,4 +1,4 @@
-#Polymer Course
+#Polymer Tutorial
 
 ##Courses & Modules:
 - POLY101

@@ -1,1 +1,1 @@
-##Demos of the things built in the modules.
+##Demos of things built in the courses.

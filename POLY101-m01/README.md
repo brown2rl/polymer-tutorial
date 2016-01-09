@@ -21,14 +21,16 @@ It adds elegance in building custom DOM/html elements, while providing less boil
 
 ## End to End w/ polymer (idea to production)
 Some common problems : solutions:
+
+
 1. "Blank page rabbithole effect" : 
-	- use [Polymer Starter Kit](https://developers.google.com/web/tools/polymer-starter-kit/?hl=en)!  It comes bundled with elements & Gulp for deployment.
-	- use [NPM yeoman generator package](https://www.npmjs.com/package/generator-polymer-gulp) (`npm install generator-polymer-gulp -g`, then `yo polymer && gulp serve`) for easy starter kit install!
+  - use [Polymer Starter Kit](https://developers.google.com/web/tools/polymer-starter-kit/?hl=en)!  It comes bundled with elements & Gulp for deployment.
+  - use [NPM yeoman generator package](https://www.npmjs.com/package/generator-polymer-gulp) (`npm install generator-polymer-gulp -g`, then `yo polymer && gulp serve`) for easy starter kit install!
 2. Breaking up the app :
-	- break down to smaller components/elements (modularize!)
-	- container->view->data strucure->data item
-	- an example script.. 
-	```
+  - break down to smaller components/elements (modularize!)
+  - container->view->data strucure->data item
+  - an example script.. 
+```
 	Polymer({
 		is: 'container',
 		properties: {
@@ -46,4 +48,4 @@ Some common problems : solutions:
 			}
 		}
 	});
-	```
+```

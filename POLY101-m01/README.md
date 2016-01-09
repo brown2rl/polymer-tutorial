@@ -31,21 +31,49 @@ Some common problems : solutions:
   - container->view->data strucure->data item
   - an example script.. 
 ```
-	Polymer({
-		is: 'container',
-		properties: {
-			data_item: {
-				notify: true,
-				value: function(){
-					return [
-						{
-							label: 'data_item label'
-							isComplete: false
-						},
-						_
-					];
+<dom-module id="container_name">
+	<script>
+		Polymer({
+			is: 'container_name',
+			properties: {
+				data_item: {
+					notify: true, // 2-way bindable
+					value: function(){
+						return [ // data_items are objects in an array
+							{
+								label: 'data_item label'
+								isComplete: false // a flag
+							},
+							_
+						];
+					}
 				}
 			}
-		}
-	});
+		});
+	</script>
+</dom-module>
+```
+  - then use data bindings & reference your element..
+```
+<dom-module id="view_name">
+	<template>
+		<data_strutcure_name data_item="{{data_item}}"></data_structure_name>
+	</template>
+	<script>
+		Polymer({
+			is: 'view_name',
+			properties: {
+				data_item: Array // binds data to data_structure_name element
+			}
+		});
+	</script>
+</dom-module>
+```
+```
+ <body>
+ 	<template is="dom-bind">
+	 <container_name data_item="{{data_item}}"></container_name>
+	 <view_name data_item="{{data_item}}"></view_name>
+	</template>
+</body>
 ```

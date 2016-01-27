@@ -94,14 +94,14 @@ Some common problems : solutions:
 	<link rel="import" href="../paper-button-html">
 </head>
 <body>
-<!-- HTML Test Fixtures (can add as many fixutres as you want)-->
+<!- HTML Test Fixtures (can add as many fixutres as you want)->
 	<test-fixture id="PaperButton">
 		<template>
 			<paper-button> Test Button </paper-button>
 		</template>
 	</test-fixture>
 	
-<!-- Test Suite -->
+<!- Test Suite ->
 	<script>
 		suite('paper-button, function() { //setting test
 			var button;
@@ -150,37 +150,45 @@ Some common problems : solutions:
 
 ##Platinum Elements set
 - great for client side networking
--Offline:
--- offline = removing a dependency from a network
--- control the offline experience.. create your own offline dinosaur game!
--Service Worker:
--- control the interaction with the server
--- stores Req/Res pairs in a local cache
--- ex:
+
+Offline:
+
+- offline = removing a dependency from a network
+- control the offline experience.. create your own offline dinosaur game!
+
+Service Worker:
+
+- control the interaction with the server
+- stores Req/Res pairs in a local cache
+- ex:
 ```
 <platinum-sw-register auto-register>
-	<!-- handle route requests -->
+	<!- handle route requests ->
 	<platinum-sw-fetch path="/images/(.*)"
 	handler="networkFirst">
 	</platinum-sw-fetch>
 	
-	<!-- define the cache resource -->
+	<!- define the cache resource ->
 	<platinum-sw-cache default-cache-strategy="networkFirst"
 	precache='["index.html',"main.css"]'>
 	</platinum-sw-cache>
 </platinum-sw-register>
 ```
--- cache strategies (when resource fetching fails):
+- cache strategies (when resource fetching fails):
+
 	1. networkOnly - sw doesn't do anything
 	2. networkFirst - look in cache if nothing from server
 	3. cacheFirst - load from cache first, then server if not found
 	4. fastest - go to both cache and server and use whatever loads fastest
 	5. custom - for profiling and configuring different geo regions
+	
 - can create user-defined caching
--Messaging:
--- prompting for notfication in context of the app
--- push notifications/messaging
--- example:
+
+Messaging:
+
+- prompting for notfication in context of the app
+- push notifications/messaging
+- example:
 ```
 <platinum-push-messaging
 	title="A push message"
@@ -191,7 +199,7 @@ Some common problems : solutions:
 </platinum-push-messaging>
 <toggle-button></toggle-button>
 ```
--- event example:
+- event example:
 ```
 var ppm =
 	document.querySelector('platinum-push-messaging');
@@ -202,8 +210,9 @@ toggle.addEventListner('click',
 ppm.addEventListner('subsription-changed',
 	e => sendSubscription(ppm.subscription));
 ```
--Device Access (Limited ChromeOS)
--- example device element:
+Device Access (Limited ChromeOS)
+
+- example device element:
 ```
 <platinum-bluetooth-device 
 	id="device"

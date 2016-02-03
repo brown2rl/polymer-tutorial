@@ -24,13 +24,16 @@ Some common problems : solutions:
 
 
 1. Avoiding "Blank page rabbithole effect" : 
-  - use [Polymer Starter Kit](https://developers.google.com/web/tools/polymer-starter-kit/?hl=en)!  It comes bundled with elements & Gulp for deployment.
-  - ensure you have Ruby 22 bin in your PATH or some environment variable
+  - use [Intermediate Polymer Starter Kit (full)](https://github.com/PolymerElements/polymer-starter-kit#getting-started)!  It comes bundled with elements & Gulp for deployment.
+  - (ensure you have Ruby 22 bin in your PATH or some environment variable)
+  - be sure to upgrade to the following packages when installing node packages
+```
+$ npm install --save-dev gulp-htmlmin gulp-cssnano lodash
+```
   - use [NPM yeoman generator package](https://www.npmjs.com/package/generator-polymer-gulp) (`npm install generator-polymer-gulp -g`, then `yo polymer && gulp serve`) for easy starter kit install!
 2. Breaking up the app :
   - break down to smaller components/elements (modularize!)
-  - container->view->data strucure->data item
-  - an example script.. 
+  - container->view->data strucure->data item  - an example script.. 
 ```
 <dom-module id="container_name">
 	<script>

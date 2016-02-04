@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-#Polymer Tutorial
-
-##Courses & Modules:
-- POLY101
-	- m01 - Intro to Polymer
-- POLY102
-	- m01 - Creating an element with starter kit
-	- m02 - Testing your element
-	- m03 - Integrating your element
-- POLY200
-	- m01 - Project: Designing a Dashboard
-	- m02 - Project: Creating Dashboard elements
-	- m03 - Project: Connecting Data Sources
-	- m04 - Project: Testing Dashboard elements
-	- m05 - Project: Deploying as a component
-=======
-![](https://cloud.githubusercontent.com/assets/110953/7877439/6a69d03e-0590-11e5-9fac-c614246606de.png)
 ## Polymer Starter Kit
 
 > A starting point for building web applications with Polymer 1.0

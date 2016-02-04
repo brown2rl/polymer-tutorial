@@ -1,4 +1,4 @@
-## Creating an element with starter kig
+## Creating an element with starter kit
 
 1. Download and the Full Intermediate Starter Kit and its dependancies from the link in 101.  Alternatively,
 ```

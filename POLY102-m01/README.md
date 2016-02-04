@@ -1,9 +1,20 @@
 ## Creating an element with starter kig
 
-1. Download and the Full Intermediate Starter Kit and its dependancies from the link in 101
-2. check to see that the fresh installation is served correctly (using Chrome)
+1. Download and the Full Intermediate Starter Kit and its dependancies from the link in 101.  Alternatively,
 ```
-$ gulp serve
+$ git clone https://github.com/polymerelements/polymer-starter-kit.git
+```
+3. install bower components in the new directory
+```
+$ bower install
+```
+4. move bower_components to /app (otherwise gulp will not build correctly)
+```
+$ mv bower_components app
+```
+2. check to see that the fresh installation is served correctly (using Chrome). if you need to change ports, go to node_modules/browser-sync/lib/default-config.js and change from 3001 (Polymer Starter Kit)
+```
+$ gulp && gulp serve
 ```
 3. here's the breakdown of the project directory/starter kit:
 -app/ is where you store all of your source code and do all of your development.

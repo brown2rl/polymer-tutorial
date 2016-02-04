@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+#Polymer Tutorial
+
+##Courses & Modules:
+- POLY101
+	- m01 - Intro to Polymer
+- POLY102
+	- m01 - Creating an element with starter kit
+	- m02 - Testing your element
+	- m03 - Integrating your element
+- POLY200
+	- m01 - Project: Designing a Dashboard
+	- m02 - Project: Creating Dashboard elements
+	- m03 - Project: Connecting Data Sources
+	- m04 - Project: Testing Dashboard elements
+	- m05 - Project: Deploying as a component
+=======
 ![](https://cloud.githubusercontent.com/assets/110953/7877439/6a69d03e-0590-11e5-9fac-c614246606de.png)
 ## Polymer Starter Kit
 
@@ -379,3 +396,4 @@ Like other Google projects, Polymer Starter Kit includes Google license headers 
 ## Contributing
 
 Polymer Starter Kit is a new project and is an ongoing effort by the Web Component community. We welcome your bug reports, PRs for improvements, docs and anything you think would improve the experience for other Polymer developers.
+>>>>>>> upstream/master

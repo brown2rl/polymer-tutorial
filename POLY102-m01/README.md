@@ -8,15 +8,13 @@ $ git clone https://github.com/polymerelements/polymer-starter-kit.git
 ```
 $ bower install
 ```
-4. move bower_components to /app (otherwise gulp will not build correctly)
-```
-$ mv bower_components app
-```
-2. check to see that the fresh installation is served correctly (using Chrome). if you need to change ports, go to ```node_modules/browser-sync/lib/default-config.js``` and change from 3001 (Polymer Starter Kit)
+4. make sure bower_components is in app/ (otherwise gulp will not build correctly)
+
+5. check to see that the fresh installation is served correctly (using Chrome). if you need to change ports, go to ```node_modules/browser-sync/lib/default-config.js``` and change from 3001 (Polymer Starter Kit)
 ```
 $ gulp && gulp serve
 ```
-3. here's the breakdown of the project directory/starter kit:
+6. here's the breakdown of the project directory/starter kit:
 
 - app/ is where you store all of your source code and do all of your development.
 - elements/ is where you keep your custom elements.

@@ -1,4 +1,4 @@
-## Creating an element with starter kit
+## setting up
 
 1. Download and the Full Intermediate Starter Kit and its dependancies from the link in 101.  Alternatively,
 ```
@@ -14,9 +14,10 @@ $ bower install
 ```
 $ gulp && gulp serve
 ```
-6.  if all goes well, you should have an output that looks like this:
+6. if all goes well, you should have an output that looks like this:
 ![PSK initial output](PSK_initial_page.png)
-here's the breakdown of the project directory/starter kit:
+
+7. here's the breakdown of the project directory/starter kit.. it's the larger system in which we will integrate our custom element:
 
 - app/ is where you store all of your source code and do all of your development.
 - elements/ is where you keep your custom elements.
@@ -27,3 +28,12 @@ here's the breakdown of the project directory/starter kit:
 - docs/ contains optional “recipes” (how-to guides) for adding features to your application or for using optional tools or editors.
 - dist/ is the directory to deploy to production. When you run the build task, files are prepared for production (HTML imports are vulcanzied, scripts are minimized, and so on) and output to this directory.
 
+## creating our element
+In order to create our custom element, we're going to utilize the seed element and polyserve.
+The seed element gives us the ablity to create and test reusable elements with a localized version of Polymer in order 
+to integrate it into the larger system. It also allows us to create API documentation on the fly.
+### setting up
+1. download/unzip or clone [the seed element](https://www.polymer-project.org/1.0/docs/start/reusableelements.html) into app/elements
+2. install polyserve globally ```npm install -g polyserve```
+3. ```bower install``` for your components
+4. run ```polyserve``` or ```polyserve -p 9999``` if you need a different port

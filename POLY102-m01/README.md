@@ -40,5 +40,15 @@ to integrate it into the larger system. It also allows us to create API document
 5. if all goes well, you should see a landing page looking like the following:
 ![reusable element output](reusable-element.png)
 
-...
+---
 data binding video inspiration: [data binding vid](https://youtu.be/1sx6YNn58OQ)
+
+
+- parses HTML for {{}} child component -> parent component data and [[]] parent component -> child component data and makes property effects
+- $0._propertyEffects to inspect property effects in chrome
+- gets ```set function() {}``` in ```Polymer({})``` for:
+	 "dirty checking" ( data value diffing & chacing )
+	 running property effects
+	 listeining to changed events
+- _setFoo = private setter
+- setting readonly

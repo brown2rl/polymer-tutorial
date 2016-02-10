@@ -1,4 +1,4 @@
-## setting up
+﻿## setting up
 
 1. Download and the Full Intermediate Starter Kit and its dependancies from the link in 101.  Alternatively,
 ```
@@ -39,3 +39,6 @@ to integrate it into the larger system. It also allows us to create API document
 4. run ```polyserve``` or ```polyserve -p 9999``` if you need a different port (for C9 users, be sure to ```polyserve -H 0.0.0.0```)
 5. if all goes well, you should see a landing page looking like the following:
 ![reusable element output](reusable-element.png)
+
+...
+data binding video inspiration: [data binding vid](https://youtu.be/1sx6YNn58OQ)

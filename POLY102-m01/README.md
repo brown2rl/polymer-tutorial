@@ -36,4 +36,6 @@ to integrate it into the larger system. It also allows us to create API document
 1. download/unzip or clone [the seed element](https://www.polymer-project.org/1.0/docs/start/reusableelements.html) into app/elements
 2. install polyserve globally ```npm install -g polyserve```
 3. ```bower install``` for your components
-4. run ```polyserve``` or ```polyserve -p 9999``` if you need a different port
+4. run ```polyserve``` or ```polyserve -p 9999``` if you need a different port (for C9 users, be sure to ```polyserve -H 0.0.0.0```)
+5. if all goes well, you should see a landing page looking like the following:
+![reusable element output](reusable-element.png)

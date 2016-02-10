@@ -1,4 +1,4 @@
-##Courses & Modules:
+# Courses & Modules:
 - POLY101
 	- m01 - Intro to Polymer
 - POLY102

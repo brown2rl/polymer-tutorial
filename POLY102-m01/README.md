@@ -47,9 +47,11 @@ to integrate it into the larger system. It also allows us to create API document
 - lets start by deleting the contents of ```<style></style>``` and ```<template></template>``` so that the HTML looks like (without ```<script></script>```)
 ```
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-fab/paper-fab.html">
+<link rel="import" href="../iron-icons/notification-icons.html">
 
 <!--
-An element providing a solution to no problem in particular.
+An element representing the restart signal for a device
 
 Example:
 
@@ -60,15 +62,45 @@ Example:
 <dom-module id="seed-element">
 
   <style>
-    
+    paper-fab {
+      --paper-fab-background: orange; // init & rebooting state
+    }
   </style>
 
   <template>
-    
+    <paper-fab icon="notification:power"></paper-fab>
+  
   </template>
 
 </dom-module>
 ```
+- next, we'll open up the contents of ```project/seed-element/demo/index.html```.  this is what is displayed when we click "demo" at the top right after we serve the page
+- notice the assignment in the ```author``` custom attribute is an object that is passed to the Polymer function in ```seed-element.html```
+- remove the extraneos stuff in the ```<body>```, ```<seed-element>```, and ```<script>``` so that we only have the following:
+```
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>seed-element Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../seed-element.html">
+  </head>
+  <body>
+
+    <seed-element>
+      
+    </seed-element>
+
+    <script>
+ 
+    </script>
+
+  </body>
+</html>
+```
+- now, when we run ```polyserve``` and click demo, we get something looking like
+![demo-element-power-button](power-button-demo.png)
 ---
 data binding video inspiration: [data binding vid](https://youtu.be/1sx6YNn58OQ)
 

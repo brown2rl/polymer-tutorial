@@ -39,6 +39,7 @@ to integrate it into the larger system. It also allows us to create API document
 4. run ```polyserve``` or ```polyserve -p 9999``` if you need a different port (for C9 users, be sure to ```polyserve -H 0.0.0.0```)
 5. if all goes well, you should see a landing page looking like the following:
 ![reusable element output](reusable-element.png)
+
 ![reusable element demo](reusable-element-demo-.png)
 ### adding some better stuff
 - open seed-element.html from ```project/seed-element```
@@ -68,3 +69,16 @@ Example:
 
 </dom-module>
 ```
+---
+data binding video inspiration: [data binding vid](https://youtu.be/1sx6YNn58OQ)
+
+
+- parses HTML for {{}} child component -> parent component data and [[]] parent component -> child component data and makes property effects
+- $0._propertyEffects to inspect property effects in chrome
+- gets ```set function() {}``` in ```Polymer({})``` for:
+	 "dirty checking" ( data value diffing & chacing )
+	 running property effects
+	 listeining to changed events
+- _setFoo = private setter
+- setting readonly
+

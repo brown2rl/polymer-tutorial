@@ -2,9 +2,9 @@
 - POLY101
 	- m01 - Intro to Polymer
 - POLY102
-	- m01 - Creating an element with starter kit
+	- m01 - Setting up starter kit and creating a reusable element with ```<seed-element></seed-element>```
 	- m02 - Testing your element
-	- m03 - Integrating your element
+	- m03 - Integrating your element into starter kit
 - POLY200
 	- m01 - Project: Designing a Dashboard
 	- m02 - Project: Creating Dashboard elements

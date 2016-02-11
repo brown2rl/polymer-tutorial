@@ -35,7 +35,36 @@ to integrate it into the larger system. It also allows us to create API document
 ### setting up
 1. download/unzip or clone [the seed element](https://www.polymer-project.org/1.0/docs/start/reusableelements.html) into app/elements
 2. install polyserve globally ```npm install -g polyserve```
-3. ```bower install``` for your components
+3. ```bower install``` for your components (may have to include them in demo and test)
 4. run ```polyserve``` or ```polyserve -p 9999``` if you need a different port (for C9 users, be sure to ```polyserve -H 0.0.0.0```)
 5. if all goes well, you should see a landing page looking like the following:
 ![reusable element output](reusable-element.png)
+![reusable element demo](reusable-element-demo-.png)
+### adding some better stuff
+- open seed-element.html from ```project/seed-element```
+- we're going to remove the contents of the element, and add a button to represent restarting a particular device
+- lets start by deleting the contents of ```<style></style>``` and ```<template></template>``` so that the HTML looks like (without ```<script></script>```)
+```
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <seed-element></seed-element>
+
+@demo
+-->
+<dom-module id="seed-element">
+
+  <style>
+    
+  </style>
+
+  <template>
+    
+  </template>
+
+</dom-module>
+```

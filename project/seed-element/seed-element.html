@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-fab/paper-fab.html">
 <link rel="import" href="../iron-icons/notification-icons.html">
+<link rel="import" href="../neon-animations/web-animations.html">
 
 <!--
 An element representing the restart signal for a device
@@ -24,12 +25,12 @@ Example:
 
   <style>
     paper-fab {
-      --paper-fab-background: orange; //init & rebooting state
+      background: orange; // init & rebooting state
     }
   </style>
 
   <template>
-    <paper-fab icon="notification:power"></paper-fab>
+    <paper-fab class="restart" id="device-power" onclick="rotateOut()" icon="notification:power"></paper-fab>
   
   </template>
 
@@ -39,56 +40,31 @@ Example:
   Polymer({
 
     is: 'seed-element',
-
-    properties: {
-
-      
-
-    },
-
-    // Element Lifecycle
-
-    ready: function() {
-      // `ready` is called after all elements have been configured, but
-      // propagates bottom-up. This element's children are ready, but parents
-      // are not.
-      //
-      // This is the point where you should make modifications to the DOM (when
-      // necessary), or kick off any processes the element wants to perform.
-    },
-
-    attached: function() {
-      // `attached` fires once the element and its parents have been inserted
-      // into a document.
-      //
-      // This is a good place to perform any work related to your element's
-      // visual state or active behavior (measuring sizes, beginning animations,
-      // loading resources, etc).
-    },
-
-    detached: function() {
-      // The analog to `attached`, `detached` fires when the element has been
-      // removed from a document.
-      //
-      // Use this to clean up anything you did in `attached`.
-    }
-
-    // Element Behavior
-
-    /**
-     * The `seed-element-lasers` event is fired whenever `fireLasers` is called.
-     *
-     * @event seed-element-lasers
-     * @detail {{sound: String}}
-     */
-
-    /**
-     * Sometimes it's just nice to say hi.
-     *
-     * @param {string} greeting A positive greeting.
-     * @return {string} The full greeting.
-     */
-   
+    
+  properties: {
+    device_id: Number,
+    device_name: String,
+    location: String
+   }
+    
   });
-
+  
+  function rotateOut() {
+    var elem = document.querySelector('.restart');
+    var transformOrigin = elem.style['transform-origin'];
+    var keyframes = [
+      {transform: 'none', opacity: '1', transformOrigin: 'center', offset: 0}, 
+      {transform: 'rotate3d(0, 0, 1, 200deg)', opacity: '0', transformOrigin: 'center', offset: 1}
+    ];
+    var timing = {duration: 900, iterations: 3};
+    
+    elem.animate(keyframes, timing);
+    var rotate = elem.animate(keyframes, timing); 
+    //send restart signal here & call rotate.finish() when signal recieved or timed out
+    
+    rotate.onfinish = function() {
+    // device powered on.. we'll want to detect timeout and color red
+      elem.style.background = "green";
+    }
+  }
 </script>

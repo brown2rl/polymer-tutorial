@@ -65,6 +65,12 @@ Example:
     paper-fab {
       --paper-fab-background: orange; // init & rebooting state
     }
+    .device-on {
+      --paper-fab-background: green; // 
+    }
+    .device-off {
+      --paper-fab-background: red; // 
+    }
   </style>
 
   <template>
@@ -101,6 +107,81 @@ Example:
 ```
 - now, when we run ```polyserve``` and click demo, we get something looking like
 ![demo-element-power-button](power-button-demo.png)
+
+- this brings us to the design decision of how to represent device power state with the button.
+- while we are thinking about that, let's remove the extraneos info from the Polymer script in ```seed-element.html``` and add a listener for a click
+```
+<script>
+
+  Polymer({
+
+    is: 'seed-element',
+
+    handleClick: function() {
+        // alert for a status
+        alert('restarting device...');
+        // change color to green for device on state
+        document.getElementsByTagName("paper-fab")[0].setAttribute("class","device-on");
+      }
+
+
+   
+  });
+
+</script>
+```
+- .. and amend our element to represent a loading state and green for online
+```
+<dom-module id="seed-element">
+
+  <style>
+    paper-fab {
+      background: orange; // init & rebooting state
+    }
+  </style>
+
+  <template>
+    <paper-fab id="device-power" onclick="restart()" icon="notification:power"></paper-fab>
+  
+  </template>
+
+</dom-module>
+<script>
+
+  Polymer({
+
+    is: 'seed-element',
+    
+        
+  properties: {
+    device_id: Number,
+    device_name: String,
+    location: String
+   }
+    
+  });
+  
+  function rotateOut() {
+    var elem = document.querySelector('.restart');
+    var transformOrigin = elem.style['transform-origin'];
+    var keyframes = [
+      {transform: 'none', opacity: '1', transformOrigin: 'center', offset: 0}, 
+      {transform: 'rotate3d(0, 0, 1, 200deg)', opacity: '0', transformOrigin: 'center', offset: 1}
+    ];
+    var timing = {duration: 900, iterations: 3};
+    
+    elem.animate(keyframes, timing);
+    var rotate = elem.animate(keyframes, timing); 
+    
+    //send restart signal here & call rotate.finish() when signal recieved or timed out
+    
+    rotate.onfinish = function() {
+    // device powered on.. we'll want to detect timeout and color red
+      elem.style.background = "green";
+    }
+  }
+</script>
+```
 ---
 data binding video inspiration: [data binding vid](https://youtu.be/1sx6YNn58OQ)
 

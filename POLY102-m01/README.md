@@ -65,12 +65,6 @@ Example:
     paper-fab {
       --paper-fab-background: orange; // init & rebooting state
     }
-    .device-on {
-      --paper-fab-background: green; // 
-    }
-    .device-off {
-      --paper-fab-background: red; // 
-    }
   </style>
 
   <template>
@@ -130,7 +124,7 @@ Example:
 
 </script>
 ```
-- .. and amend our element to represent a loading state and green for online
+- .. and amend our element to represent a loading state (green - on & red - off/error) with some properties
 ```
 <dom-module id="seed-element">
 
@@ -168,19 +162,92 @@ Example:
       {transform: 'none', opacity: '1', transformOrigin: 'center', offset: 0}, 
       {transform: 'rotate3d(0, 0, 1, 200deg)', opacity: '0', transformOrigin: 'center', offset: 1}
     ];
-    var timing = {duration: 900, iterations: 3};
+    var timing = {duration: 900, iterations: 3}; // change 3 to Infinity when we have a signal
+    // random number gen since we don't have a real signal yet.
+    var state = Math.floor(((Math.random()*10)+1) % 2);
     
     elem.animate(keyframes, timing);
     var rotate = elem.animate(keyframes, timing); 
     
     //send restart signal here & call rotate.finish() when signal recieved or timed out
     
+    
+    
     rotate.onfinish = function() {
     // device powered on.. we'll want to detect timeout and color red
-      elem.style.background = "green";
+      state == 0 ? elem.style.background = "green" : elem.style.background = "red";
     }
   }
 </script>
+```
+- also, notice that we've added a random number generator to simulate the off and on states based upon the modulo operator
+- let's start exploring our element's properties.  currently we know that devices have a name, and id, and a location at least.  it may also be helpful to add a protocol and an address.  to add properties, we define a field named "properties" and populate that with the names and type that we will be displaying within our element.  because some of these are mutable (change) we want to give the notify field so that we can update the element once the property's value changes.
+```
+  Polymer({
+
+    is: 'seed-element',
+    
+    properties: {
+      device_id: Number,
+      device_name: {
+        type: String,
+        notify: true
+      },
+      location: {
+        type: String,
+        notify: true
+      },
+      protocol: {
+        type: String,
+        notify: true
+      },
+      address: {
+        type: String,
+        notify: true
+      }
+    }
+    
+  });
+```
+- now that we have the properties, let's add some observers to listen when the value changes.  this happens when we supply some dummy values.  our properties should now look like
+ ```
+properties: {
+      device_id: Number,
+      device_name: {
+        type: String,
+        notify: true,
+        observer: '_nameChanged'
+      },
+      location: {
+        type: String,
+        notify: true,
+        observer: '_locationChanged'
+      },
+      protocol: {
+        type: String,
+        notify: true,
+        observer: '_protoChanged'
+      },
+      address: {
+        type: String,
+        notify: true,
+        observer: '_addressChanged'
+      },
+      
+      _nameChanged: function (newValue, oldValue){
+      
+     },
+     _locationChanged: function (newValue, oldValue) {
+     
+     },
+     _protoChanged: function (newValue, oldValue) {
+     
+     },
+    _addressChanged: function (newValue, oldValue) {
+     
+     }
+}
+     
 ```
 ---
 data binding video inspiration: [data binding vid](https://youtu.be/1sx6YNn58OQ)

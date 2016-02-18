@@ -31,7 +31,7 @@ Example:
 
   <template>
     <paper-fab class="restart" id="device-power" onclick="rotateOut()" icon="notification:power"></paper-fab>
-  
+    <p>{{device_id}}</p>
   </template>
 
 </dom-module>
@@ -41,11 +41,42 @@ Example:
 
     is: 'seed-element',
     
-  properties: {
-    device_id: Number,
-    device_name: String,
-    location: String
-   }
+    properties: {
+      device_id: Number,
+      device_name: {
+        type: String,
+        notify: true,
+        observer: '_nameChanged'
+      },
+      location: {
+        type: String,
+        notify: true,
+        observer: '_locationChanged'
+      },
+      protocol: {
+        type: String,
+        notify: true,
+        observer: '_protoChanged'
+      },
+      address: {
+        type: String,
+        notify: true,
+        observer: '_addressChanged'
+      },
+      
+      _nameChanged: function (newValue, oldValue){
+      
+     },
+     _locationChanged: function (newValue, oldValue) {
+     
+     },
+     _protoChanged: function (newValue, oldValue) {
+     
+     },
+    _addressChanged: function (newValue, oldValue) {
+     
+     }
+}
     
   });
   
@@ -56,15 +87,18 @@ Example:
       {transform: 'none', opacity: '1', transformOrigin: 'center', offset: 0}, 
       {transform: 'rotate3d(0, 0, 1, 200deg)', opacity: '0', transformOrigin: 'center', offset: 1}
     ];
-    var timing = {duration: 900, iterations: 3};
+    var timing = {duration: 900, iterations: 3};// change 3 to Infinity when we have a signal
+    // random number gen since we don't have a real signal yet.
+    var state = Math.floor(((Math.random()*10)+1) % 2);
     
     elem.animate(keyframes, timing);
     var rotate = elem.animate(keyframes, timing); 
     //send restart signal here & call rotate.finish() when signal recieved or timed out
+
     
     rotate.onfinish = function() {
-    // device powered on.. we'll want to detect timeout and color red
-      elem.style.background = "green";
+    // conditional for state styling based on even (green) & odd (red)
+      state == 0 ? elem.style.background = "green" : elem.style.background = "red";
     }
   }
 </script>

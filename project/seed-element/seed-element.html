@@ -10,8 +10,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-fab/paper-fab.html">
 <link rel="import" href="../iron-icons/notification-icons.html">
-<link rel="import" href="../neon-animations/web-animations.html">
-
+<link rel="import" href="../iron-label/iron-label.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
 <!--
 An element representing the restart signal for a device
 
@@ -30,8 +32,12 @@ Example:
   </style>
 
   <template>
+   
+    <iron-label id="device-name" onmouseover="showEdit('name')" onmouseout="removeEdit('name')">
+      {{device_name}}
     <paper-fab class="restart" id="device-power" onclick="rotateOut()" icon="notification:power"></paper-fab>
-    <p>{{device_id}}</p>
+    </iron-label>
+   <!-- <input value={{device_name}}> -->
   </template>
 
 </dom-module>
@@ -46,37 +52,49 @@ Example:
       device_name: {
         type: String,
         notify: true,
-        observer: '_nameChanged'
+        value: 'device name'
       },
       location: {
         type: String,
-        notify: true,
-        observer: '_locationChanged'
+        notify: true
       },
       protocol: {
         type: String,
-        notify: true,
-        observer: '_protoChanged'
+        notify: true
       },
       address: {
         type: String,
-        notify: true,
-        observer: '_addressChanged'
-      },
+        notify: true
+      }
+    },
+
       
-      _nameChanged: function (newValue, oldValue){
-      
-     },
-     _locationChanged: function (newValue, oldValue) {
-     
-     },
-     _protoChanged: function (newValue, oldValue) {
-     
-     },
-    _addressChanged: function (newValue, oldValue) {
-     
+   _nameChanged: function () {
+     // get contents of edit field
+     var name_edit = this.querySelector('#device-name-edit');
+     var name_new = name_edit.value;
+     // assign value of label new name
+     var device_name_elem = this.querySelector('#device-name');
+     device_name_elem.value = name_new;
+   },
+   _editClicked: function(elem) {
+     switch(elem) {
+       case "name":
+         _nameChanged();
+         break;
      }
-}
+   },
+
+   _locationChanged: function (newValue, oldValue) {
+   
+   },
+   _protoChanged: function (newValue, oldValue) {
+   
+   },
+  _addressChanged: function (newValue, oldValue) {
+   
+   }
+
     
   });
   
@@ -100,5 +118,19 @@ Example:
     // conditional for state styling based on even (green) & odd (red)
       state == 0 ? elem.style.background = "green" : elem.style.background = "red";
     }
+  }
+  
+  function showEdit(elem){
+     switch(elem) {
+      case "name":
+        //var label = document.querySelector('#'+elem+'');
+        var toInsert = document.createElement("<iron-icon icon=icons:'create'></iron-icon>");
+        var beforeNode = Polymer.dom(this.root).childNodes[0];
+        Polymer.dom(this.root).insertBefore(toLocal, beforeNode);
+     }
+   }
+   
+  function removeEdit(elem){
+    alert(elem);
   }
 </script>

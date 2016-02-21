@@ -8,12 +8,17 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../polymer/polymer.html">
+
 <link rel="import" href="../paper-fab/paper-fab.html">
-<link rel="import" href="../iron-icons/notification-icons.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
 <link rel="import" href="../iron-label/iron-label.html">
 <link rel="import" href="../paper-input/paper-input.html">
-<link rel="import" href="../paper-button/paper-button.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
+
+<link rel="import" href="../iron-icons/maps-icons.html">
+<link rel="import" href="../iron-icons/communication-icons.html">
+<link rel="import" href="../iron-icons/hardware-icons.html">
+<link rel="import" href="../iron-icons/notification-icons.html">
 <!--
 An element representing the restart signal for a device
 
@@ -29,15 +34,42 @@ Example:
     paper-fab {
       background: orange; // init & rebooting state
     }
+    iron-label {
+      font-family: arial;
+    }
   </style>
 
   <template>
-   
-    <iron-label id="device-name" onmouseover="showEdit('name')" onmouseout="removeEdit('name')">
-      {{device_name}}
-    <paper-fab class="restart" id="device-power" onclick="rotateOut()" icon="notification:power"></paper-fab>
+    
+    <iron-label id="device-meta">
+      <table>
+        <tr>
+          <td>
+            {{device_name}} - {{device_id}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span id='status'></span>
+          </td>
+          <td>
+             <paper-fab class="restart" id="device-power" onclick="rotateOut()" icon="notification:power"></paper-fab>
+          </td>
+          <td>
+            <tr>
+             <td><iron-icon icon="maps:place"></iron-icon> {{location}}</td>
+            </tr>
+            <tr>
+              <td><iron-icon icon="communication:message"></iron-icon> {{protocol}}</td>
+            </tr>
+            <tr>
+              <td><iron-icon icon="hardware:memory"></iron-icon> {{address}}</td>
+            </tr>
+          </td>
+        </tr>
+      </table>
     </iron-label>
-   <!-- <input value={{device_name}}> -->
+    </table>
   </template>
 
 </dom-module>
@@ -48,7 +80,11 @@ Example:
     is: 'seed-element',
     
     properties: {
-      device_id: Number,
+      device_id: {
+        type: Number,
+        notify: true,
+        value: 12345
+      },
       device_name: {
         type: String,
         notify: true,
@@ -56,50 +92,25 @@ Example:
       },
       location: {
         type: String,
-        notify: true
+        notify: true,
+        value: '04A-65'
       },
       protocol: {
         type: String,
-        notify: true
+        notify: true,
+        value: 'Zigbee'
       },
       address: {
         type: String,
-        notify: true
+        notify: true,
+        value: '0:0:0:0:0:0:0:0/0'
       }
-    },
-
-      
-   _nameChanged: function () {
-     // get contents of edit field
-     var name_edit = this.querySelector('#device-name-edit');
-     var name_new = name_edit.value;
-     // assign value of label new name
-     var device_name_elem = this.querySelector('#device-name');
-     device_name_elem.value = name_new;
-   },
-   _editClicked: function(elem) {
-     switch(elem) {
-       case "name":
-         _nameChanged();
-         break;
-     }
-   },
-
-   _locationChanged: function (newValue, oldValue) {
-   
-   },
-   _protoChanged: function (newValue, oldValue) {
-   
-   },
-  _addressChanged: function (newValue, oldValue) {
-   
-   }
-
-    
+    }
   });
   
   function rotateOut() {
     var elem = document.querySelector('.restart');
+    var status = document.querySelector('#status')
     var transformOrigin = elem.style['transform-origin'];
     var keyframes = [
       {transform: 'none', opacity: '1', transformOrigin: 'center', offset: 0}, 
@@ -110,27 +121,33 @@ Example:
     var state = Math.floor(((Math.random()*10)+1) % 2);
     
     elem.animate(keyframes, timing);
+    status.textContent = "REBOOTING...";
     var rotate = elem.animate(keyframes, timing); 
     //send restart signal here & call rotate.finish() when signal recieved or timed out
 
     
     rotate.onfinish = function() {
     // conditional for state styling based on even (green) & odd (red)
-      state == 0 ? elem.style.background = "green" : elem.style.background = "red";
-    }
+      if (state == 0) {
+        elem.style.background = "green";
+        status.textContent = "ON";
+      } else {
+        elem.style.background = "red";
+        status.textContent = "OFF";
+      }
+    };
   }
   
-  function showEdit(elem){
+ function showEdit (elem){
      switch(elem) {
       case "name":
-        //var label = document.querySelector('#'+elem+'');
-        var toInsert = document.createElement("<iron-icon icon=icons:'create'></iron-icon>");
-        var beforeNode = Polymer.dom(this.root).childNodes[0];
-        Polymer.dom(this.root).insertBefore(toLocal, beforeNode);
+       alert('hovered device');
+        break;
      }
-   }
-   
-  function removeEdit(elem){
+    }
+
+    function removeEdit (elem){
     alert(elem);
-  }
+    }
+  
 </script>

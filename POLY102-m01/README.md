@@ -209,46 +209,153 @@ Example:
     
   });
 ```
-- now that we have the properties, let's add some observers to listen when the value changes.  this happens when we supply some dummy values.  our properties should now look like
+- now that we have the properties, let's add some default values
  ```
 properties: {
-      device_id: Number,
+      device_id: {
+        type: Number,
+        notify: true,
+        value: 12345
+      },
       device_name: {
         type: String,
         notify: true,
-        observer: '_nameChanged'
+        value: 'device name'
       },
       location: {
         type: String,
         notify: true,
-        observer: '_locationChanged'
+        value: '04A-65'
       },
       protocol: {
         type: String,
         notify: true,
-        observer: '_protoChanged'
+        value: 'Zigbee'
       },
       address: {
         type: String,
         notify: true,
-        observer: '_addressChanged'
-      },
-      
-      _nameChanged: function (newValue, oldValue){
-      
-     },
-     _locationChanged: function (newValue, oldValue) {
-     
-     },
-     _protoChanged: function (newValue, oldValue) {
-     
-     },
-    _addressChanged: function (newValue, oldValue) {
-     
-     }
-}
-     
+        value: '0:0:0:0:0:0:0:0/0'
+      }
+    }
 ```
+- after a good amount of testing, we should now be able to add some of our icons and a text state that corresponds with your paper fab with a little tweak on the animation and html for your final custom element:
+```
+<dom-module id="seed-element">
+
+  <style>
+    paper-fab {
+      background: orange; // init & rebooting state
+    }
+    iron-label {
+      font-family: arial;
+    }
+  </style>
+
+  <template>
+    
+    <iron-label id="device-meta">
+      <table>
+        <tr>
+          <td>
+            {{device_name}} - {{device_id}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span id='status'></span>
+          </td>
+          <td>
+             <paper-fab class="restart" id="device-power" onclick="rotateOut()" icon="notification:power"></paper-fab>
+          </td>
+          <td>
+            <tr>
+             <td><iron-icon icon="maps:place"></iron-icon> {{location}}</td>
+            </tr>
+            <tr>
+              <td><iron-icon icon="communication:message"></iron-icon> {{protocol}}</td>
+            </tr>
+            <tr>
+              <td><iron-icon icon="hardware:memory"></iron-icon> {{address}}</td>
+            </tr>
+          </td>
+        </tr>
+      </table>
+    </iron-label>
+    </table>
+  </template>
+
+</dom-module>
+<script>
+
+  Polymer({
+
+    is: 'seed-element',
+    
+    properties: {
+      device_id: {
+        type: Number,
+        notify: true,
+        value: 12345
+      },
+      device_name: {
+        type: String,
+        notify: true,
+        value: 'device name'
+      },
+      location: {
+        type: String,
+        notify: true,
+        value: '04A-65'
+      },
+      protocol: {
+        type: String,
+        notify: true,
+        value: 'Zigbee'
+      },
+      address: {
+        type: String,
+        notify: true,
+        value: '0:0:0:0:0:0:0:0/0'
+      }
+    }
+  });
+  
+  function rotateOut() {
+    var elem = document.querySelector('.restart');
+    var status = document.querySelector('#status')
+    var transformOrigin = elem.style['transform-origin'];
+    var keyframes = [
+      {transform: 'none', opacity: '1', transformOrigin: 'center', offset: 0}, 
+      {transform: 'rotate3d(0, 0, 1, 200deg)', opacity: '0', transformOrigin: 'center', offset: 1}
+    ];
+    var timing = {duration: 900, iterations: 3};// change 3 to Infinity when we have a signal
+    // random number gen since we don't have a real signal yet.
+    var state = Math.floor(((Math.random()*10)+1) % 2);
+    
+    elem.animate(keyframes, timing);
+    status.textContent = "REBOOTING...";
+    var rotate = elem.animate(keyframes, timing); 
+    //send restart signal here & call rotate.finish() when signal recieved or timed out
+
+    
+    rotate.onfinish = function() {
+    // conditional for state styling based on even (green) & odd (red)
+      if (state == 0) {
+        elem.style.background = "green";
+        status.textContent = "ON";
+      } else {
+        elem.style.background = "red";
+        status.textContent = "OFF";
+      }
+    };
+  }
+</script>
+```
+- if you copy the above, and replace it for your final work, and all goes well, you should have something looking like the following:
+![demo-element-power-button](element-final.png)
+![demo-element-power-button](element-final-reboot.png)
+![demo-element-power-button](element-final-on.png)
 ---
 data binding video inspiration: [data binding vid](https://youtu.be/1sx6YNn58OQ)
 

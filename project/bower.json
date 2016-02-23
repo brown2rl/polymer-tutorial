@@ -9,7 +9,8 @@
     "platinum-elements": "PolymerElements/platinum-elements#^1.1.0",
     "polymer": "Polymer/polymer#^1.2.0",
     "paper-input": "PolymerElements/paper-input#^1.1.6",
-    "iron-input": "PolymerElements/iron-input#^1.0.8"
+    "iron-input": "PolymerElements/iron-input#^1.0.8",
+    "bower-metrics-dashboard": "https://github.com/PolymerLabs/bower-metrics-dashboard"
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"

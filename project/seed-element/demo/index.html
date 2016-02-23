@@ -7,7 +7,7 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -27,4 +27,154 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </script>
 
   </body>
+</html>
+-->
+<!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Polymer metrics - provided by Bower</title>
+
+  
+  
+ <!-- <link rel="import" href="../demo/dash-compon/elements.vulcanize.html"> -->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+    }
+    body {
+      font-family: "Open Sans", san-serif;
+      font-weight: 300;
+      background-color: #eee;
+    }
+  </style>
+  
+  
+  <script src="../../webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="../seed-element.html">
+</head>
+<body unresolved>
+
+<bower-dashboard>
+  <header>
+    <h2><a href="http://polymerlabs.github.io/bower-metrics-dashboard"><img id="logo" src="http://www.polymer-project.org/images/logos/p-logo.svg">Polymer installs</a></h2>
+  </header>
+</bower-dashboard>
+
+<script>
+document.addEventListener('polymer-ready', function(e) {
+  var dash = document.querySelector('bower-dashboard');
+
+  // Set initial list of repos if none were passed in the URL.
+  if (!dash.list.length) {
+    dash.list = [
+      'Polymer/polymer',
+      'webcomponentsjs',
+      'PolymerElements/iron-elements',
+      'PolymerElements/paper-elements',
+      'PolymerElements/gold-elements',
+      'PolymerElements/platinum-elements',
+      'PolymerElements/neon-elements'
+    ];
+  }
+
+  dash.allRepos = [
+  'Polymer/polymer',
+  "PolymerElements/iron-ajax",
+  "PolymerElements/iron-animated-pages",
+  "PolymerElements/iron-animation",
+  "PolymerElements/iron-collapse",
+  "PolymerElements/iron-component-page",
+  "PolymerElements/iron-component-page-dev",
+  "PolymerElements/iron-doc-viewer",
+  "PolymerElements/iron-docs",
+  "PolymerElements/iron-drag-drop",
+  "PolymerElements/iron-drawer-panel",
+  "PolymerElements/iron-elements",
+  "PolymerElements/iron-field",
+  "PolymerElements/iron-header-panel",
+  "PolymerElements/iron-home-page",
+  "PolymerElements/iron-home-page-dev",
+  "PolymerElements/iron-icon",
+  "PolymerElements/iron-icon-button",
+  "PolymerElements/iron-icons",
+  "PolymerElements/iron-iconset",
+  "PolymerElements/iron-iconset-svg",
+  "PolymerElements/iron-input",
+  "PolymerElements/iron-item",
+  "PolymerElements/iron-layout",
+  "PolymerElements/iron-layout-grid",
+  "PolymerElements/iron-layout-trbl",
+  "PolymerElements/iron-list",
+  "PolymerElements/iron-localstorage",
+  "PolymerElements/iron-media-query",
+  "PolymerElements/iron-menu",
+  "PolymerElements/iron-menu-button",
+  "PolymerElements/iron-meta",
+  "PolymerElements/iron-overlay",
+  "PolymerElements/iron-pages",
+  "PolymerElements/iron-range",
+  "PolymerElements/iron-scaffold",
+  "PolymerElements/iron-scroll-header-panel",
+  "PolymerElements/iron-selection",
+  "PolymerElements/iron-selector",
+  "PolymerElements/iron-shared-lib",
+  "PolymerElements/iron-signals",
+  "PolymerElements/iron-splitter",
+  "PolymerElements/iron-style",
+  "PolymerElements/iron-tests",
+  "PolymerElements/iron-toolbar",
+  "PolymerElements/iron-tooltip",
+  "PolymerElements/iron-transition",
+  "GoogleWebComponents/firebase-element",
+  "PolymerElements/paper-button",
+  "PolymerElements/paper-calculator",
+  "PolymerElements/paper-checkbox",
+  "PolymerElements/paper-dialog",
+  "PolymerElements/paper-docs",
+  "PolymerElements/paper-doc-viewer",
+  "PolymerElements/paper-elements",
+  "PolymerElements/paper-fab",
+  "PolymerElements/paper-focusable",
+  "PolymerElements/paper-icon-button",
+  "PolymerElements/paper-input",
+  "PolymerElements/paper-ink",
+  "PolymerElements/paper-item",
+  "PolymerElements/paper-menu-button",
+  "PolymerElements/paper-progress",
+  "PolymerElements/paper-radio-button",
+  "PolymerElements/paper-radio-group",
+  "PolymerElements/paper-ripple",
+  "PolymerElements/paper-scaffold",
+  "PolymerElements/paper-shadow",
+  "PolymerElements/paper-slider",
+  "PolymerElements/paper-tabs",
+  "PolymerElements/paper-toast",
+  "PolymerElements/paper-toggle-button"
+  ].sort();
+
+});
+</script>
+<script>
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39334307-3', 'polymerlabs.github.io');
+  ga('send', 'pageview');*/
+</script>
+</body>
 </html>

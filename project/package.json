@@ -34,5 +34,9 @@
   },
   "engines": {
     "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "load-grunt-tasks": "^3.4.0"
   }
 }
